@@ -17,6 +17,12 @@
             min-height: 100vh;
             display: flex;
             color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
         }
         
         /* Estilos da barra lateral */
@@ -28,6 +34,10 @@
             height: 100vh;
             position: fixed;
             box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .sidebar {
+            background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
         }
         
         .sidebar h2 {
@@ -61,12 +71,23 @@
             min-height: 100vh;
         }
         
+        body.dark-mode .main-content {
+            background: transparent;
+        }
+        
         .main-content h2 {
             margin-bottom: 30px;
             color: #2d3748;
             font-size: 28px;
             position: relative;
             padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        body.dark-mode .main-content h2 {
+            color: #e6e6e6;
         }
         
         .main-content h2::after {
@@ -78,6 +99,34 @@
             height: 4px;
             background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
             border-radius: 2px;
+        }
+        
+        body.dark-mode .main-content h2::after {
+            background: linear-gradient(90deg, #63b3ed 0%, #4a5568 100%);
+        }
+        
+        /* Botão de modo noturno */
+        .theme-toggle {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode .theme-toggle {
+            background: linear-gradient(90deg, #f6ad55 0%, #ed8936 100%);
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .search-box {
@@ -94,6 +143,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             font-size: 16px;
             outline: none;
+            background: white;
+            color: #333;
+        }
+        
+        body.dark-mode #searchInput {
+            background: #2d3748;
+            color: #e6e6e6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         
         .commands-container {
@@ -111,9 +168,18 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
+        body.dark-mode .command-card {
+            background: #2d3748;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
         .command-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        body.dark-mode .command-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
         
         .command-title {
@@ -124,6 +190,11 @@
             border-bottom: 2px solid #4b6cb7;
         }
         
+        body.dark-mode .command-title {
+            color: #e6e6e6;
+            border-bottom: 2px solid #63b3ed;
+        }
+        
         .command-content {
             background: #f8f9fa;
             padding: 15px;
@@ -132,6 +203,12 @@
             white-space: pre-wrap;
             overflow-x: auto;
             margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        body.dark-mode .command-content {
+            background: #1a202c;
+            color: #cbd5e0;
         }
         
         .copy-btn {
@@ -147,6 +224,10 @@
             margin-left: auto;
         }
         
+        body.dark-mode .copy-btn {
+            background: linear-gradient(90deg, #4299e1 0%, #3182ce 100%);
+        }
+        
         .copy-btn:hover {
             opacity: 0.9;
         }
@@ -158,10 +239,15 @@
             color: #718096;
         }
         
+        body.dark-mode .footer {
+            color: #a0aec0;
+        }
+        
         .highlight {
             background-color: #ffd700;
             padding: 2px 4px;
             border-radius: 3px;
+            color: #333;
         }
         
         /* Responsividade */
@@ -215,6 +301,12 @@
             .commands-container {
                 grid-template-columns: 1fr;
             }
+            
+            .main-content h2 {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
         }
         
         /* Animações */
@@ -245,12 +337,16 @@
   <h2>Menu</h2>
   <a href="index.html">Buscar Senha</a>
   <a href="comandos.html">Comandos</a>
-  <a href="sac.html">SAC</a>
-  <a href="suporte.html">Suporte</a>
 </div>
 
     <div class="main-content">
-        <h2>Comandos para ONU/Roteador</h2>
+        <h2>
+            Comandos para ONU/Roteador
+            <button class="theme-toggle" id="themeToggle">
+                <span id="themeIcon">🌙</span>
+                <span id="themeText">Modo Noturno</span>
+            </button>
+        </h2>
         
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Pesquisar comandos...">
@@ -411,6 +507,33 @@ cfgcli -s InternetGatewayDevice.X_Authentication.WebAccount.Password Mudar@123</
                     card.style.display = 'none';
                 }
             });
+        });
+        
+        // Modo noturno
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        
+        // Verificar se há preferência salva
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Modo Claro';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Modo Claro';
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Modo Noturno';
+                localStorage.setItem('darkMode', 'false');
+            }
         });
     </script>
 </body>
