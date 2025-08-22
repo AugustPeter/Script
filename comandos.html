@@ -240,13 +240,15 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <a href="index.html">Buscar Senha</a>
-        <a href="comandos.html" style="background: rgba(255, 255, 255, 0.1); border-left: 4px solid #ffd700; padding-left: 30px;">Comandos</a>
-        <a href="sac.html">SAC</a>
-        <a href="suporte.html">Suporte</a>
-    </div>
+    
+<div class="sidebar">
+  <h2>Menu</h2>
+  <a href="index.html">Buscar Senha</a>
+  <a href="comandos.html">Comandos</a>
+  <a href="ixl.html">Base IXC</a>
+  <a href="sac.html">SAC</a>
+  <a href="suporte.html">Suporte</a>
+</div>
 
     <div class="main-content">
         <h2>Comandos para ONU/Roteador</h2>
@@ -264,13 +266,17 @@
             
             <div class="command-card">
                 <h3 class="command-title">CONSULTAR IP</h3>
-                <div class="command-content">cfgcli -g InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress
+                <div class="command-content">cfgcli -g InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+            </div>
+            <div class="command-card">
+                <h3 class="command-title">SUBIR IP</h3>
+                <div class="command-content">
 
 cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Username ana_6642715_air
 cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Password L5uai8</div>
                 <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
             </div>
-            
             <div class="command-card">
                 <h3 class="command-title">ALTERAR SSID E SENHA</h3>
                 <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID Amanda
