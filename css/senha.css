@@ -137,6 +137,7 @@ body {
     align-items: center;
     transition: all 0.2s ease;
     background: white;
+    margin-top: 2px;
 }
 
 #resultados li:last-child {
@@ -156,6 +157,7 @@ body {
     font-weight: 600;
     color: #2d3748;
     font-size: 16px;
+    
 }
 
 .password {
