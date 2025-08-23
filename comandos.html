@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comandos para ONU/Roteador</title>
-    <style>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -61,6 +61,41 @@
             background: rgba(255, 255, 255, 0.1);
             border-left: 4px solid #ffd700;
             padding-left: 30px;
+        }
+        
+        /* Estilos para o submenu de suporte */
+        .has-submenu {
+            position: relative;
+        }
+        
+        .has-submenu::after {
+            content: "▸";
+            position: absolute;
+            right: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .has-submenu.active::after {
+            transform: rotate(90deg);
+        }
+        
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .has-submenu.active + .submenu {
+            max-height: 200px;
+        }
+        
+        .submenu a {
+            padding-left: 40px;
+            font-size: 0.9em;
+            background: rgba(0, 0, 0, 0.1);
+            white-space: nowrap; /* Impede quebra de linha */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adiciona "..." se o texto for muito longo */
         }
         
         /* Conteúdo principal */
@@ -313,6 +348,16 @@
                 gap: 15px;
                 align-items: flex-start;
             }
+            
+            /* Ajustes do submenu para mobile */
+            .has-submenu::after {
+                right: 15px;
+            }
+            
+            .submenu a {
+                padding-left: 30px;
+                white-space: normal; /* Permite quebra de linha em mobile */
+            }
         }
         
         /* Animações */
@@ -343,7 +388,26 @@
   <h2>Menu</h2>
   <a href="index.html">Buscar Senha</a>
   <a href="comandos.html">Comandos</a>
-   <div class="sidebar-footer">
+
+  <!-- <a href="#" class="has-submenu" id="suporteLink">Suporte</a>
+  <div class="submenu" id="suporteSubmenu">
+    <a href="suporte-tecnico.html">Sem suporte</a>
+    <a href="manuais.html">Manuais</a>
+    <a href="faq.html">Perguntas Frequentes</a>
+    <a href="contato.html">Contato</a>
+  </div> -->
+
+
+  <a href="#" class="has-submenu" id="sacLink">SAC</a>
+  <div class="submenu" id="sacSubmenu">
+    <a href="ncc.html">NCC</a>
+    <a href="endereço.html">Troca de endereço e cômodo</a>
+    <a href="planos.html">Planos</a>
+    <a href="fatura.html">Financeiro</a>
+  </div>
+
+
+  <div class="sidebar-footer">
         <p>Feito por pedro.silveira</p>
     </div>
 </div>
@@ -467,6 +531,16 @@ TROCA DE SENHA:
 cfgcli -s InternetGatewayDevice.X_Authentication.WebAccount.Password Mudar@123</div>
                 <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
             </div>
+
+            <div class="command-card">
+                <h3 class="command-title">VALIDAR VELOCIDADE PORTA LAN:</h3>
+                <div class="command-content">cfgcli -g InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.1.X_ALU_COM_CurMaxBitRate
+cfgcli -g InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.2.X_ALU_COM_CurMaxBitRate
+cfgcli -g InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.3.X_ALU_COM_CurMaxBitRate
+cfgcli -g InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.4.X_ALU_COM_CurMaxBitRate</div>
+                <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+            </div>
+
         </div>
         
         <div class="footer">
@@ -544,6 +618,32 @@ cfgcli -s InternetGatewayDevice.X_Authentication.WebAccount.Password Mudar@123</
                 localStorage.setItem('darkMode', 'false');
             }
         });
+        
+        // Script para controlar o submenu de suporte
+        document.addEventListener('DOMContentLoaded', function() {
+            const suporteLink = document.getElementById('suporteLink');
+            const suporteSubmenu = document.getElementById('suporteSubmenu');
+            
+            if (suporteLink && suporteSubmenu) {
+                suporteLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('active');
+                });
+            }
+        });
+// Script para controlar o submenu de sac
+
+        document.addEventListener('DOMContentLoaded', function() {
+  const suporteLink = document.getElementById('sacLink');
+  const suporteSubmenu = document.getElementById('sacSubmenu');
+  
+  if (sacLink && sacSubmenu) {
+    sacLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.classList.toggle('active');
+    });
+  }
+});
     </script>
 </body>
 </html>
