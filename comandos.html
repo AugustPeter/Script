@@ -511,13 +511,13 @@ cfgcli -g InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.SSID</div>
             </div>
             
             <div class="command-card">
-                <h3 class="command-title">LIBERAR ACESSO REMOTO (IP:8080)</h3>
+                <h3 class="command-title">DESABILITAR ACESSO REMOTO (IP:8080)</h3>
                 <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.X_ALU-COM_WanAccessCfg.HttpDisabled True</div>
                 <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
             </div>
             
             <div class="command-card">
-                <h3 class="command-title">DESABILITAR ACESSO REMOTO</h3>
+                <h3 class="command-title">LIBERAR ACESSO REMOTO</h3>
                 <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.X_ALU-COM_WanAccessCfg.HttpDisabled False</div>
                 <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
             </div>
@@ -541,11 +541,135 @@ cfgcli -g InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.4.X_ALU_C
                 <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
             </div>
 
+
+            <div class="command-card">
+    <h3 class="command-title">HABILITAR LAN</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.1.Enable True
+cfgcli -s InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.2.Enable True
+cfgcli -s InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.3.Enable True
+cfgcli -s InternetGatewayDevice.LANDevice.1.LANEthernetInterfaceConfig.4.Enable True</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+
+<div class="command-card">
+    <h3 class="command-title">FORÇAR DESCONEXÃO</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Enable false</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">FORÇAR RECONEXÃO</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Enable true</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">STATUS DA CONEXÃO</h3>
+    <div class="command-content">cfgcli -g InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ConnectionStatus</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">CONSULTAR CONEXÃO</h3>
+    <div class="command-content">cfgcli -g InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.X_ASB_COM_ConnectionEstablishedTime</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">RESET COMPLETO</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Username USUARIO_PPPoE
+cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.Password SENHA_PPPoE
+cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID NOME_WIFI_2.4Ghz
+cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.PreSharedKey.1.PreSharedKey SENHA_WIFI_2.4Ghz
+cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.SSID NOME_WIFI_5.8Ghz
+cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.PreSharedKey.1.PreSharedKey SENHA_WIFI_5.8Ghz</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">ALTERAR MODO DE IP</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.X_CT-COM_IPMode 3
+# 1 = IPv4 | 2 = IPv6 | 3 = IPv4&amp;IPv6</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+
+<div class="command-card">
+    <h3 class="command-title">VERIFICAÇÃO GERAL DE CONEXÃO</h3>
+    <div class="command-content">cfgcli dumpwan</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">ALTERAR CRIPTOGRAFIA WIFI</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.BeaconType WPAand11i
+cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.BeaconType WPAand11i</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">LIBERAR DMZ</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.X_ASB_COM_DmzPppHostCfg.DmzEnabled true</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+
+<div class="command-card">
+    <h3 class="command-title">CONSULTAR MTU</h3>
+    <div class="command-content">cfgcli -g InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.InterfaceMtu</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">CONSULTAR FAIXAS DE IP/DHCP</h3>
+    <div class="command-content">cfgcli -g InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.MinAddress
+cfgcli -g InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.MaxAddress</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">ALTERAR FAIXAS DE IP/DHCP</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.MinAddress 192.168.0.2
+cfgcli -s InternetGatewayDevice.LANDevice.1.LANHostConfigManagement.MaxAddress 192.168.0.254</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">ALTERAR LARGURA DE BANDA WIFI 5GHz</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.X_CT-COM_ChannelWidth 2
+# 0 = 20MHz | 1 = 40MHz | 2 = 80MHz</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+
+<div class="command-card">
+    <h3 class="command-title">DESABILITAR WIFI 6</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.Standard "a,n,ac"</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
+<div class="command-card">
+    <h3 class="command-title">HABILITAR WIFI 6</h3>
+    <div class="command-content">cfgcli -s InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.Standard "a,n,ac,ax"</div>
+    <button class="copy-btn" onclick="copyToClipboard(this.previousElementSibling)">Copiar</button>
+</div>
+
         </div>
         
-        <div class="footer">
-            <p>by pedro.silveira</p>
-        </div>
     </div>
 
     <script>
